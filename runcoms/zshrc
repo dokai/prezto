@@ -16,6 +16,20 @@ SAVEHIST=130000
 
 alias ec='TERM=screen-256color emacsclient'
 
+# https://fb.facebook.com/groups/hack.of.the.day/permalink/767242569991027/
+# Example: `bscomm fbgs foo bar` finds files which contain both foo and bar
+bscomm() {
+  cmd=$1
+  shift
+
+  result=$($cmd -l $1 | sort -u)
+  shift
+  for q in $@; do
+    result=$(comm -12 <(echo "${result}") <($cmd -l $q | sort -u))
+  done
+  echo "${result}"
+}
+
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs command_execution_time time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
