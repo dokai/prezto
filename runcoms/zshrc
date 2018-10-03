@@ -14,7 +14,7 @@ fi
 HISTSIZE=130000
 SAVEHIST=130000
 
-alias ec=emacsclient
+alias ec='TERM=screen-256color emacsclient'
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs command_execution_time time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
